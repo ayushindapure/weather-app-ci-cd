@@ -99,7 +99,7 @@ def test_celsius_to_fahrenheit_intentional_failure():
     FIX: Change 80.0 to 72.5 to make this test pass.
     """
     result = celsius_to_fahrenheit(22.5)
-    assert result == 80.0  
+    assert result == 39.0  
 
 
 def test_weather_description_intentional_failure():
@@ -109,7 +109,7 @@ def test_weather_description_intentional_failure():
     FIX: Change "Sunny" to "Clear sky" to make this test pass.
     """
     description = get_weather_description(0)
-    assert description == "Sunny"  
+    assert description == "Warm"  
 
 
 
@@ -120,4 +120,4 @@ def test_classify_temperature_intentional_failure():
     FIX: Change "Cold" to "Warm" to make this test pass.
     """
     result = classify_temperature(25)
-    assert result == "Cold"  
+    assert result == "freezing"  
