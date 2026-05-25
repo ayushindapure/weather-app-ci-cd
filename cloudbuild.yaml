@@ -1,0 +1,26 @@
+steps:
+
+  # Step 1 — Install dependencies
+  - name: 'python:3.11'
+    entrypoint: pip
+    args: ['install', '-r', 'requirements.txt', '--user']
+
+  # Step 2 — Run tests (will FAIL on first push due to intentional failures)
+  - name: 'python:3.11'
+    entrypoint: python
+    args: ['-m', 'pytest', 'test_app.py', '-v', '--tb=short']
+
+  # Step 3 — Deploy to Cloud Run (only runs if tests pass)
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'weather-app'
+      - '--source'
+      - '.'
+      - '--region'
+      - 'australia-southeast1'
+      - '--allow-unauthenticated'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
